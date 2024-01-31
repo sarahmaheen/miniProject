@@ -1,7 +1,7 @@
 with open("story.txt","r") as f:
     story = f.read()
     print(story)
-words =[]
+words =set()
 start_of_word = -1
 
 target_start= "<"
@@ -16,6 +16,22 @@ for i, char in enumerate(story):
 
     if char == target_end and start_of_word != -1:
         word = story[start_of_word:i+1]
-        print(start_of_word)
-        print(i+1)
-        print(word)
+        # slicing the words from the story!!!!!
+        # print(start_of_word)
+        # print(i+1)
+        # print(word)
+        words.add(word)
+        start_of_word = -1
+
+answers = {}
+
+for word in words:
+    answer = input("Enter a word for" + word + ":")
+    answers[word] = answer
+
+for word in words:
+    story = story.replace(word, answers[word])
+
+# print(words)
+# print(answers)
+print(story)
